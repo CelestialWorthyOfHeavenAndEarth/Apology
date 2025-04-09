@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm Sorry, Sisi</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #eef1f5 100%);
+            color: #333;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2.5rem;
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #9370DB 0%, #FF69B4 100%);
+        }
+        
+        h1 {
+            color: #9370DB;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            position: relative;
+            display: inline-block;
+            font-size: 2.2rem;
+        }
+        
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #9370DB 0%, #FF69B4 100%);
+        }
+        
+        .apology {
+            font-size: 1.1rem;
+            margin: 2.5rem 0;
+            text-align: left;
+            padding: 1.8rem;
+            background-color: #f9f9f9;
+            border-radius: 12px;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+            line-height: 1.8;
+        }
+        
+        .apology p:first-child {
+            font-weight: 500;
+            color: #9370DB;
+            font-size: 1.2rem;
+        }
+        
+        .emphasis {
+            color: #9370DB;
+            font-weight: 500;
+        }
+        
+        .signature {
+            font-style: italic;
+            margin-top: 2.5rem;
+            color: #555;
+        }
+        
+        .memory {
+            margin: 2.5rem 0;
+            position: relative;
+        }
+        
+        .image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .memory img {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            margin-bottom: 1.2rem;
+            transition: all 0.4s ease;
+            border: 4px solid white;
+        }
+        
+        .memory img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
+        }
+        
+        .memory p {
+            font-size: 1.2rem;
+            color: #9370DB;
+            font-weight: 500;
+            margin-top: 1.5rem;
+        }
+        
+        button {
+            background: linear-gradient(90deg, #9370DB 0%, #FF69B4 100%);
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 18px rgba(147, 112, 219, 0.4);
+            font-weight: 500;
+            margin-top: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(147, 112, 219, 0.6);
+        }
+        
+        button:active {
+            transform: translateY(1px);
+        }
+        
+        button::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 100%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        
+        button:hover::after {
+            transform: translateX(100%);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .forgiveness {
+            margin-top: 2.5rem;
+            padding: 1.8rem;
+            background: linear-gradient(135deg, #f6f0fd 0%, #e2f3ea 100%);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+        
+        .forgiveness.show {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        .forgiveness h2 {
+            color: #9370DB;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            .apology {
+                font-size: 1rem;
+                padding: 1.2rem;
+            }
+
+            button {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .memory p {
+                font-size: 1rem;
+            }
+
+            .forgiveness h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>I'm Sorry, Sisi</h1>
+        
+        <div class="apology">
+            <p>Dear Sisi,</p>
+            <p>I shouldn't have talked to you like that. I'm feeling really bad and I know I shouldn't have talked that way.</p>
+            <p>The reason I started playing Mobile Legends is because I like playing with you and I felt sad after you couldn't play Genshin so I started playing Mobile Legends even though I didn't quite like it, and I wanted to play with you and I'm just too embarrassed to ask, and on the other hand I felt I'm making you lose the games but I still wanted to play and this made me frustrated and jealous, hahaha a narrow minded idiot and I made you sad.</p>
+            <p>My frustration and pride got into my head, and I <span class="emphasis">truly regret</span> talking like that.</p>
+            <p>I don't know if you will pardon me, but I still hope that you will play with me again.</p>
+        </div>
+        
+        <div class="memory">
+            <div class="image-container">
+                <img src="https://media1.tenor.com/m/VjIzPb6ivXYAAAAC/please-cat.gif" alt="Pleading cat gif">
+                <img src="https://media.tenor.com/qFmoHEJt6p8AAAAM/don%E2%80%99t-make-me-beg.gif" alt="Don't make me beg gif">
+            </div>
+            <p>Please pardon this poor peasant for his mistake</p>
+        </div>
+        
+        <button id="forgiveButton">Click here if you forgive me</button>
+        
+        <div id="forgivenMessage" class="forgiveness hidden">
+            <h2>Thank you!</h2>
+            <p>Thank you for your forgiveness your majesty, I won't repeat this again. Let's play together again :)</p>
+            <img id="leviGif" src="https://media1.tenor.com/m/wredE_JZfeQAAAAC/levi.gif" alt="Levi Ackerman Serious" style="max-width: 100%; border-radius: 12px; margin-top: 1.5rem; display: none;">
+        </div>
+        
+        <div class="signature">
+            <p>With sincere apologies,</p>
+            <p>Poor peasant Ash</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('forgiveButton').addEventListener('click', function() {
+            const message = document.getElementById('forgivenMessage');
+            const leviGif = document.getElementById('leviGif');
+            message.classList.remove('hidden');
+            
+            setTimeout(() => {
+                message.classList.add('show');
+                leviGif.style.display = 'block';
+            }, 10);
+
+            createConfetti();
+        });
+
+        function createConfetti() {
+            const container = document.querySelector('body');
+            for (let i = 0; i < 150; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = `${Math.random() * 10 + 5}px`;
+                confetti.style.height = `${Math.random() * 10 + 5}px`;
+                confetti.style.backgroundColor = randomColor();
+                confetti.style.left = `${Math.random() * window.innerWidth}px`;
+                confetti.style.top = '-20px';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                confetti.style.zIndex = '1000';
+                container.appendChild(confetti);
+                fallConfetti(confetti);
+            }
+        }
+
+        function fallConfetti(confetti) {
+            const duration = Math.random() * 3 + 2;
+            const leftOffset = Math.random() * 200 - 100;
+            const rotations = Math.random() * 10;
+            
+            confetti.animate([
+                { transform: 'translate(0, 0) rotate(0deg)', opacity: 1 },
+                { transform: `translate(${leftOffset}px, ${window.innerHeight}px) rotate(${rotations * 360}deg)`, opacity: 0 }
+            ], {
+                duration: duration * 1000,
+                easing: 'cubic-bezier(.37,.01,.74,.99)'
+            }).onfinish = () => {
+                confetti.remove();
+            };
+        }
+
+        function randomColor() {
+            const colors = ['#FF69B4', '#9370DB', '#FFB6C1', '#8A2BE2', '#DA70D6', '#EE82EE', '#FF00FF', '#BA55D3', '#DDA0DD', '#D8BFD8'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+    </script>
+</body>
+</html>
